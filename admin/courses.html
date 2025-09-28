@@ -39,7 +39,16 @@
             .breadcrumb {
                 margin-bottom: 1rem;
             }
+
+            #newCourse {
+            background-color: var(--apple-green);
+            }
+
+            #editCourseInfo {
+            background-color: var(--apple-green);
+            }
         </style>
+
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark">
@@ -126,7 +135,8 @@
                                 </ol>
                             </div>
                             <div>
-                                <button type="button" class="btn btn-primary">
+                                <button type="button" class="btn btn-primary"data-bs-toggle="modal"
+                                data-bs-target="#addNewCourses">
                                     <i class="fas fa-plus"></i> Add New Course
                                 </button>
                             </div>
@@ -160,9 +170,10 @@
                                             <td>45</td>
                                             <td><span class="badge bg-success">Active</span></td>
                                             <td class="action-buttons">
-                                                <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-info btn-sm"><i class="fas fa-eye"></i></button>
-                                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#editingCourses"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewingCourses"><i class="fas fa-eye"></i></button>
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletingCourses"><i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -173,9 +184,10 @@
                                             <td>38</td>
                                             <td><span class="badge bg-success">Active</span></td>
                                             <td class="action-buttons">
-                                                <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-info btn-sm"><i class="fas fa-eye"></i></button>
-                                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#editingCourses"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewingCourses"><i class="fas fa-eye"></i></button>
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletingCourses"><i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -186,9 +198,10 @@
                                             <td>42</td>
                                             <td><span class="badge bg-success">Active</span></td>
                                             <td class="action-buttons">
-                                                <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-info btn-sm"><i class="fas fa-eye"></i></button>
-                                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#editingCourses"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewingCourses"><i class="fas fa-eye"></i></button>
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletingCourses"><i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -198,10 +211,11 @@
                                             <td>3</td>
                                             <td>35</td>
                                             <td><span class="badge bg-warning text-dark">Pending</span></td>
-                                            <td class="action-buttons">
-                                                <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-info btn-sm"><i class="fas fa-eye"></i></button>
-                                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                            <td class="action-button">
+                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#editingCourses"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewingCourses"><i class="fas fa-eye"></i></button>
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletingCourses"><i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -224,6 +238,216 @@
                 </footer>
             </div>
         </div>
+
+        <!-- MODAL FOR ADDING COURSES -->
+    <div class="modal fade" id="addNewCourses" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 flex-column text-white" id="newCourse">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="text-center w-100 pb-3">
+                        <h4 class="modal-title fw-bold"><i class="fa fa-bars"></i>Add New Course</h4>
+                    </div>
+                </div>
+                <div class="modal-body px-4">
+                    <form id="addCourse" class="needs-validation" novalidate>
+                        <div class="mb-4">
+                            <label for="courseID" class="form-label">Course ID</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="bi bi-card-text text-fill"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0" id="courseID" required
+                                    placeholder="Enter course ID" id="courseID">
+                                <div class="invalid-feedback">Enter Your Course Name</div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="courseName" class="form-label">Course</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="bi bi-book text-fill"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0" id="courseName" required
+                                    placeholder="Enter Course Name" id="courseName">
+                                <div class="invalid-feedback">Enter Your Course Name</div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="course" class="form-label">Department</label>
+                            <div class="datatable-dropdown">
+                                <select class="datatable-selector" aria-labelledby="dropdownMenuButton">
+                                    <option><a value="BS Computer Science">Computer Science</a></li>
+                                    <option><a value="BS Information Technology">Information Technology</a></li>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="courseUnits" class="form-label">No_Of_Units</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="bi bi-123 text-primary"></i>
+                                </span>
+                                <input type="number" class="form-control border-start-0" id="no_of_students" required
+                                    placeholder="Enter Number of Course Units" id="no_of_students">
+                                <div class="invalid-feedback">Enter No_Of_Units</div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="no_of_students" class="form-label">No_Of_Students</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="bi bi-people text-primary"></i>
+                                </span>
+                                <input type="number" class="form-control border-start-0" id="no_of_students" required
+                                    placeholder="Enter Number of Students Enrolled" id="no_of_students">
+                                <div class="invalid-feedback">Enter no_of_students</div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="courseStatus" class="form-label">Status</label>
+                            <div class="datatable-dropdown">
+                                <select class="datatable-selector" aria-labelledby="dropdownMenuButton">
+                                    <option><a value="Active">Active</a></li>
+                                    <option><a value="Pending">Pending</a></li>
+                                    <option><a value="Not available">Not available</a></li>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary py-2 fw-bold">
+                                <span class="me-2">Add New Course</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR EDITING THE COURSES -->
+    <div class="modal fade" id="editingCourses" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 flex-column text-white" id="editCourseInfo">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="text-center w-100 pb-3">
+                        <h4 class="modal-title fw-bold"><i class="fa fa-edit"></i> Edit Course</h4>
+                    </div>
+                </div>
+                <div class="modal-body px-4">
+                    <form id="editCourseForm" class="needs-validation" novalidate>
+                        <div class="mb-4">
+                            <label for="courseName" class="form-label">Course</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="bi bi-book text-fill"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0" id="courseName" required
+                                    placeholder="Enter Course Name" id="courseName">
+                                <div class="invalid-feedback">Enter Your Course Name</div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="course" class="form-label">Department</label>
+                            <div class="datatable-dropdown">
+                                <select class="datatable-selector" aria-labelledby="dropdownMenuButton">
+                                    <option><a value="BS Computer Science">Computer Science</a></li>
+                                    <option><a value="BS Information Technology">Information Technology</a></li>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="no_of_units" class="form-label">No_Of_Units</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="bi bi-123 text-primary"></i>
+                                </span>
+                                <input type="number" class="form-control border-start-0" id="no_of_students" required
+                                    placeholder="Enter Number of Course Units" id="no_of_students">
+                                <div class="invalid-feedback">Enter Number of Units</div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="no_of_students" class="form-label">No_Of_Students</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="bi bi-people text-primary"></i>
+                                </span>
+                                <input type="number" class="form-control border-start-0" id="no_of_students" required
+                                    placeholder="Enter Number of Students Enrolled" id="no_of_students">
+                                <div class="invalid-feedback">Enter Number of Students Enrolled</div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="courseStatus" class="form-label">Status</label>
+                            <div class="datatable-dropdown">
+                                <select class="datatable-selector" aria-labelledby="dropdownMenuButton">
+                                    <option><a value="Active">Active</a></li>
+                                    <option><a value="Pending">Pending</a></li>
+                                    <option><a value="Not available">Not available</a></li>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center gap-2">
+                            <button type="submit" class="btn btn-primary py-2 fw-bold">
+                                <span class="me-2">Cancel</span>
+                            </button>
+                            <button type="submit" class="btn btn-primary py-2 fw-bold">
+                                <span class="me-2">Confirm</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!--MODAL FOR DELETING THE COURSES-->
+         <div class="modal fade" id="deletingCourses" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="logoutModalLabel"><i class="fas fa-trash"></i> Do you want to Delete this Course?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this Course?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                        <a href="" class="btn btn-danger">Yes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--MODAL VIEWING OF COURSES-->
+        <div class="modal fade" id="viewingCourses" tabindex="-1" aria-labelledby="viewingModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="viewingModalLabel"><i class="fas fa-eye"></i> Viewing Course Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <p><strong>CourseCode:</strong> <span id="viewingCourseCode"></span></p>
+                        <p><strong>CourseName:</strong> <span id="viewingCourseName"></span></p>
+                        <p><strong>Department:</strong> <span id="viewingDepartment"></span></p>
+                        <p><strong>No_Of_Units:</strong> <span id="viewingNoOfUnits"></span></p>
+                        <p><strong>No_Of_Students:</strong> <span id="viewingNoOfStudents"></span></p>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
@@ -235,5 +459,22 @@
                 }
             });
         </script>
+
+        <script>
+            // Example static data
+            const userData = {
+                id: "CS101",
+                courseName: "Introduction to Computing",
+                department: "Computer Science",
+                no_of_units: "3",
+                no_of_students: "45"
+            };
+            document.getElementById("viewingCourseCode").textContent = userData.id;
+            document.getElementById("viewingCourseName").textContent = userData.courseName;
+            document.getElementById("viewingDepartment").textContent = userData.department;
+            document.getElementById("viewingNoOfUnits").textContent = userData.no_of_units;
+            document.getElementById("viewingNoOfStudents").textContent = userData.no_of_students;
+        </script>
+
     </body>
 </html>
